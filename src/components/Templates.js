@@ -3,6 +3,7 @@ import {getTemplates} from "../services/TemplateService";
 import Template from "./Template";
 import React from "react";
 import {showAlert} from "../services/AlertService";
+import {Link} from "react-router-dom";
 
 const Templates = () => {
     const [templates, setTemplates] = useState([]);
@@ -24,7 +25,13 @@ const Templates = () => {
                     ))
                 }
             </div>
-            <div className="b-example-divider"></div>
+            <div className="row align-items-center">
+                <div className="col-12 col-sm-12">
+                    <Link to={"/"}>
+                        <button type="button" className="btn btn-secondary">Go back</button>
+                    </Link>
+                </div>
+            </div>
             <footer className="py-3 my-4">
                 <ul className="nav justify-content-center border-bottom pb-3 mb-3">
 

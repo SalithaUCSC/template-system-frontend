@@ -50,12 +50,11 @@ const AddCard = () => {
         return (cardName !== '') && (cardName !== '') && (cardDuration !== '') && (cardDescription !== '')
     }
     const validateRequestWithCardIndex = (request) => {
-        if (cardPosition === '0') {
-            request['cardPosition'] = parseInt(cardPosition);
-        } else if (cardPositionNo !== '0') {
-            request['cardPosition'] = parseInt(cardPositionNo);
-        } else if (cardPosition === '') {
+        if (cardPosition === "0" && cardPositionNo === "0") {
             request['cardPosition'] = 0;
+        }
+        if (cardPosition === "INDEX") {
+            request['cardPosition'] = parseInt(cardPositionNo);
         }
     }
     const submitForm = (e) => {
@@ -71,22 +70,20 @@ const AddCard = () => {
             }
         };
         validateRequestWithCardIndex(request);
-        console.log(request);
         if (isFormValid()) {
             addCardToTemplate(request).then(res => {
-                console.log(res);
                 if (res.status === 200) {
                     showAlert('Success!', 'success', 'Card is saved to template.');
                 }
             }).catch(err => {
-                console.log(err);
+                showAlert('Error!', 'error', err.message);
             })
         } else {
             showAlert('Error!', 'error', 'Please fill the details.');
         }
     };
     return (
-        <div className='app-container'>
+        <div className='app-container' style={{marginBottom: 100}}>
             <div className="container">
                 <h4>Add Card to Template: {id}</h4>
                 <hr/>
@@ -124,8 +121,10 @@ const AddCard = () => {
                     </div>
                     {
                         cardPosition === "INDEX" ?
-                            <input type="number" className="form-control" id="cardPositionNo" name={cardPositionNo}
+                            <div className="form mb-3">
+                                <input type="number" min="0" className="form-control" id="cardPositionNo" name={cardPositionNo}
                                    placeholder="Index" onChange={handleCardPositionNo}/>
+                            </div>
                             : ""
                     }
                     <div className="form mb-3">

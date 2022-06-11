@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import TemplateLogo from "../assets/workflow.png";
+import TemplateLogo from "../../assets/workflow.png";
 
 const Template = ({template}) => {
     const [templateData, setTemplateData] = useState({});

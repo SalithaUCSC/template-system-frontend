@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {getTemplates} from "../services/TemplateService";
+import {getTemplates} from "../../services/TemplateService";
 import Template from "./Template";
 import React from "react";
-import {showAlert} from "../services/AlertService";
+import {showAlert} from "../../services/AlertService";
 import {Link} from "react-router-dom";
 
 const Templates = () => {
@@ -14,9 +14,18 @@ const Templates = () => {
     })
     return (
         <div className="container app-container">
-            <div className="app-header"><h2>Dynamic Workflow Templates</h2></div>
-            <hr/>
             <div className="row align-self-start">
+                <div className="col-10 col-sm-10">
+                    <div className="app-header"><h2>Dynamic Workflow Templates</h2></div>
+                </div>
+                <div className="col-2 col-sm-2">
+                    <div style={{marginLeft: -20, float: "right"}}>
+                        <Link to={"/templates/addTemplate"}>
+                            <button type="button" className="btn btn-info">Add Template</button>
+                        </Link>
+                    </div>
+                </div>
+                <hr/>
                 {
                     templates.map(data => (
                         <div key={data.id} className="col-4 col-sm-3">

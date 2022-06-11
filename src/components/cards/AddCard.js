@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link, useParams} from "react-router-dom";
 import {useState} from "react";
-import {addCardToTemplate} from "../services/TemplateService";
-import {showAlert} from "../services/AlertService";
+import {addCardToTemplate} from "../../services/TemplateService";
+import {showAlert} from "../../services/AlertService";
 
 const AddCard = () => {
     const {id} = useParams();

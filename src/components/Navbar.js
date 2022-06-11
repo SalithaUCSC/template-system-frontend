@@ -12,11 +12,6 @@ const Navbar = () => {
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    {/*<div className="collapse navbar-collapse">*/}
-                    {/*    <div className="navbar-nav ms-auto mb-2 mb-lg-0">*/}
-                    {/*        <Link to="/templates" className="nav-link">Templates Page</Link>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </nav>
         </div>

@@ -9,7 +9,7 @@ const Template = ({template}) => {
     }, [template]);
     return (
         <div className="card app-card">
-                <img src={TemplateLogo} className="card-img-top" alt="template card"/>
+            <img src={TemplateLogo} className="card-img-top" alt="template card"/>
                 <div className="card-body">
                 <h5 className="card-title">{templateData.title}</h5>
                 <hr/>

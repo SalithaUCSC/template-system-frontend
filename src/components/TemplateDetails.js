@@ -3,6 +3,7 @@ import {getTemplateById} from "../services/TemplateService";
 import {Link, useParams} from "react-router-dom";
 import React from "react";
 import Card from "./Card";
+import {showAlert} from "../services/AlertService";
 
 const TemplateDetails = () => {
     const [template, setTemplate] = useState({});
@@ -14,7 +15,7 @@ const TemplateDetails = () => {
                 setTemplate(res.data);
                 setCards(res.data['cards'])
             })
-            .catch(err => console.log(err));
+            .catch(err => showAlert('Error', 'error', err.message));
     })
     return (
         <div className="app-details">

@@ -2,11 +2,14 @@ import {useEffect, useState} from "react";
 import {getTemplates} from "../services/TemplateService";
 import Template from "./Template";
 import React from "react";
+import {showAlert} from "../services/AlertService";
 
 const Templates = () => {
     const [templates, setTemplates] = useState([]);
     useEffect(() => {
-        getTemplates().then(res => setTemplates(res.data)).catch(err => console.log(err));
+        getTemplates()
+            .then(res => setTemplates(res.data))
+            .catch(err => showAlert('Unable to Load!', 'error', err.message));
     })
     return (
         <div className="container app-container">

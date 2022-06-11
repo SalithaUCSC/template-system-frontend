@@ -1,14 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import WorkFlow from "../assets/workflow-management.png";
-
-import {getTemplates} from "../services/TemplateService";
 import {Link} from "react-router-dom";
 
 const Home = () => {
-    const [templates, setTemplates] = useState([]);
-    useEffect(() => {
-        getTemplates().then(res => setTemplates(res.data)).catch(err => console.log(err));
-    })
     return (
         <div className="app-container">
             <div className="px-4 py-5 my-5 text-center">
@@ -25,9 +19,7 @@ const Home = () => {
             </div>
             <div className="container">
                 <footer className="py-3 my-4">
-                    <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-
-                    </ul>
+                    <ul className="nav justify-content-center border-bottom pb-3 mb-3"></ul>
                     <p className="text-center text-muted">© 2022 : Created By Salitha Chathuranga</p>
                 </footer>
             </div>

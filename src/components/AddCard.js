@@ -5,7 +5,8 @@ import {addCardToTemplate} from "../services/TemplateService";
 import {showAlert} from "../services/AlertService";
 
 const AddCard = () => {
-    const { id } = useParams();
+    const {id} = useParams();
+    const [inputFields, setInputFields] = useState([]);
     const [cardName, setCardName] = useState("");
     const handleCardName = (e) => {
         setCardName(e.target.value);
@@ -30,8 +31,23 @@ const AddCard = () => {
     const handleCardPositionNo = (e) => {
         setCardPositionNo(e.target.value);
     };
+    const handleAttributeChange = (index, event) => {
+        let data = [...inputFields];
+        data[index][event.target.name] = event.target.value;
+        setInputFields(data);
+    }
+    const addFields = (e) => {
+        e.preventDefault();
+        let newfield = { key: "", value: "" };
+        setInputFields([...inputFields, newfield]);
+    }
+    const removeFields = (index) => {
+        let data = [...inputFields];
+        data.splice(index, 1);
+        setInputFields(data);
+    }
     const isFormValid = () => {
-        return (cardName !== '') &&  (cardName !== '') &&  (cardDuration !== '') &&  (cardDescription !== '')
+        return (cardName !== '') && (cardName !== '') && (cardDuration !== '') && (cardDescription !== '')
     }
     const validateRequestWithCardIndex = (request) => {
         if (cardPosition === '0') {
@@ -51,7 +67,7 @@ const AddCard = () => {
                 description: cardDescription,
                 timeDuration: cardDuration,
                 role: cardRole,
-                attributes: []
+                attributes: inputFields.length > 0 ? inputFields : []
             }
         };
         validateRequestWithCardIndex(request);
@@ -76,19 +92,23 @@ const AddCard = () => {
                 <hr/>
                 <form className="p-4 p-md-5 border rounded-3 bg-light" onSubmit={submitForm}>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="cardName" name={cardName} placeholder="Name for Card" onChange={handleCardName}/>
+                        <input type="text" className="form-control" id="cardName" name={cardName}
+                               placeholder="Name for Card" onChange={handleCardName}/>
                         <label htmlFor="cardName">Card Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="cardDuration" name={cardDuration} placeholder="Time Duration" onChange={handleCardDuration}/>
+                        <input type="text" className="form-control" id="cardDuration" name={cardDuration}
+                               placeholder="Time Duration" onChange={handleCardDuration}/>
                         <label htmlFor="cardDuration">Time Duration</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="cardRole" name={cardRole} placeholder="Role" onChange={handleCardRole}/>
+                        <input type="text" className="form-control" id="cardRole" name={cardRole} placeholder="Role"
+                               onChange={handleCardRole}/>
                         <label htmlFor="cardRole">Card Role</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <textarea className="form-control" id="cardDescription" name={cardDescription} rows="5" onChange={handleCardDescription}></textarea>
+                        <textarea className="form-control" id="cardDescription" name={cardDescription} rows="5"
+                                  onChange={handleCardDescription}></textarea>
                         <label htmlFor="cardDescription">Description</label>
                     </div>
                     <div className="form mb-3">
@@ -104,16 +124,43 @@ const AddCard = () => {
                     </div>
                     {
                         cardPosition === "INDEX" ?
-                            <input type="number" className="form-control" id="cardPositionNo" name={cardPositionNo} placeholder="Index" onChange={handleCardPositionNo}/>
-                        : ""
+                            <input type="number" className="form-control" id="cardPositionNo" name={cardPositionNo}
+                                   placeholder="Index" onChange={handleCardPositionNo}/>
+                            : ""
                     }
-                        <br/><br/>
+                    <div className="form mb-3">
+                        {inputFields.map((input, index) => {
+                            return (
+                                <div key={index}>
+                                    <input
+                                        name='key'
+                                        placeholder='Attribute Key'
+                                        value={input.name}
+                                        onChange={event => handleAttributeChange(index, event)}
+                                    />
+                                    <input
+                                        name='value'
+                                        placeholder='Attribute Value'
+                                        value={input.name}
+                                        onChange={event => handleAttributeChange(index, event)}
+                                    />
+                                    <button className="btn btn-danger btn-sm" style={{marginLeft: 10}}
+                                            onClick={() => removeFields(index)}>
+                                        <i className="fa-solid fa-trash-can"></i> Remove</button>
+                                </div>
+                            )
+                        })}
+                        <br/>
+                        <button className="btn btn-secondary" onClick={addFields}>
+                            <i className="fa-solid fa-plus"></i> Add Attributes</button>
+                    </div>
+                    <br/><br/>
                     <button className="w-10 btn btn-success" type="submit">SAVE</button>
                     <hr className="my-4"/>
                     <small className="text-muted">Fill the fields accordingly.</small>
                 </form>
                 <Link to={"/templates/" + id}>
-                    <button type="button" className="btn btn-secondary" style={{ marginTop: 30}}>Go back</button>
+                    <button type="button" className="btn btn-secondary" style={{marginTop: 30}}>Go back</button>
                 </Link>
             </div>
         </div>

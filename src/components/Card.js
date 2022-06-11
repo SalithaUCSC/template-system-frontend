@@ -26,6 +26,7 @@ const Card = ({card}) => {
                             <ul className="list-group">
                                 <li className="list-group-item"><b>ID: </b>{cardData.id}</li>
                                 <li className="list-group-item"><b>Name: </b>{cardData.name}</li>
+                                <li className="list-group-item"><b>Parent Card: </b>{cardData.parentId || "NULL"}</li>
                                 <li className="list-group-item"><b>Description: </b>{cardData.description}</li>
                             </ul>
                         </div>

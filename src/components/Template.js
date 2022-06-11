@@ -13,7 +13,9 @@ const Template = ({template}) => {
                 <div className="card-body">
                 <h5 className="card-title">{templateData.title}</h5>
                 <hr/>
-                <p className="card-text">{templateData.description}</p>
+                <p className="card-text" style={{textAlign: "justify"}}>
+                    {templateData.description}
+                </p>
                 <Link to={"/templates/" + templateData.id}>
                     <button type="button" className="btn btn-dark">
                         <i className="fa-solid fa-eye"></i> View

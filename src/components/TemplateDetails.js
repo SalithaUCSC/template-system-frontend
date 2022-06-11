@@ -25,8 +25,11 @@ const TemplateDetails = () => {
                     </div>
                     <div className="col-6 col-sm-2">
                         <div style={{marginLeft: -20, float: "right"}}>
+                            <Link to={"/templates"}>
+                                <button type="button" className="btn btn-secondary" style={{ marginRight: 10}}>Go back</button>
+                            </Link>
                             <Link to={"/templates/" + template.id + "/addCard"}>
-                                <button type="button" className="btn btn-dark">Add Card</button>
+                                <button type="button" className="btn btn-primary">Add Card</button>
                             </Link>
                         </div>
                     </div>
@@ -53,9 +56,6 @@ const TemplateDetails = () => {
                         <div><br/>No Cards for this Template</div>
                     }
                 </div>
-                <Link to={"/"}>
-                    <button type="button" className="btn btn-secondary" style={{ marginTop: 30}}>Go back</button>
-                </Link>
             </div>
         </div>
     );

@@ -3,7 +3,6 @@ import {Link, useParams} from "react-router-dom";
 import {useState} from "react";
 import {addCardToTemplate} from "../services/TemplateService";
 import {showAlert} from "../services/AlertService";
-import template from "./Template";
 
 const AddCard = () => {
     const { id } = useParams();
@@ -23,20 +22,30 @@ const AddCard = () => {
     const handleCardDescription = (e) => {
         setCardDescription(e.target.value);
     };
+    const [cardPosition, setCardPosition] = useState("0");
+    const handleCardPosition = (e) => {
+        setCardPosition(e.target.value);
+    };
+    const [cardPositionNo, setCardPositionNo] = useState("0");
+    const handleCardPositionNo = (e) => {
+        setCardPositionNo(e.target.value);
+    };
     const isFormValid = () => {
         return (cardName !== '') &&  (cardName !== '') &&  (cardDuration !== '') &&  (cardDescription !== '')
     }
-    const clearForm = () => {
-        setCardName('');
-        setCardDuration('');
-        setCardRole('');
-        setCardDescription('');
+    const validateRequestWithCardIndex = (request) => {
+        if (cardPosition === '0') {
+            request['cardPosition'] = parseInt(cardPosition);
+        } else if (cardPositionNo !== '0') {
+            request['cardPosition'] = parseInt(cardPositionNo);
+        } else if (cardPosition === '') {
+            request['cardPosition'] = 0;
+        }
     }
     const submitForm = (e) => {
         e.preventDefault();
         let request = {
             templateId: id,
-            cardPosition: 0,
             card: {
                 name: cardName,
                 description: cardDescription,
@@ -44,15 +53,14 @@ const AddCard = () => {
                 role: cardRole,
                 attributes: []
             }
-        }
+        };
+        validateRequestWithCardIndex(request);
         console.log(request);
         if (isFormValid()) {
-            clearForm();
             addCardToTemplate(request).then(res => {
                 console.log(res);
                 if (res.status === 200) {
                     showAlert('Success!', 'success', 'Card is saved to template.');
-                    clearForm();
                 }
             }).catch(err => {
                 console.log(err);
@@ -77,12 +85,29 @@ const AddCard = () => {
                     </div>
                     <div className="form-floating mb-3">
                         <input type="text" className="form-control" id="cardRole" name={cardRole} placeholder="Role" onChange={handleCardRole}/>
-                        <label htmlFor="cardRole">Role</label>
+                        <label htmlFor="cardRole">Card Role</label>
                     </div>
                     <div className="form-floating mb-3">
                         <textarea className="form-control" id="cardDescription" name={cardDescription} rows="5" onChange={handleCardDescription}></textarea>
                         <label htmlFor="cardDescription">Description</label>
                     </div>
+                    <div className="form mb-3">
+                        <label htmlFor="cardPosition" className="mb-3">Card Position</label>
+                        <div>
+                            <select name="cardPosition" id="cardPosition" onChange={handleCardPosition}>
+                                <option value="" className="dropdown-item">Select Position</option>
+                                <option value="0" className="dropdown-item">START</option>
+                                <option value="END" className="dropdown-item">END</option>
+                                <option value="INDEX" className="dropdown-item">GIVEN INDEX</option>
+                            </select>
+                        </div>
+                    </div>
+                    {
+                        cardPosition === "INDEX" ?
+                            <input type="number" className="form-control" id="cardPositionNo" name={cardPositionNo} placeholder="Index" onChange={handleCardPositionNo}/>
+                        : ""
+                    }
+                        <br/><br/>
                     <button className="w-10 btn btn-success" type="submit">SAVE</button>
                     <hr className="my-4"/>
                     <small className="text-muted">Fill the fields accordingly.</small>

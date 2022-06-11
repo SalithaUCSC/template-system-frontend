@@ -4,6 +4,7 @@ import Template from "./Template";
 import React from "react";
 import {showAlert} from "../../services/AlertService";
 import {Link} from "react-router-dom";
+import Footer from "../Footer";
 
 const Templates = () => {
     const [templates, setTemplates] = useState([]);
@@ -27,11 +28,14 @@ const Templates = () => {
                 </div>
                 <hr/>
                 {
-                    templates.map(data => (
+                    templates.length && templates.length > 0 ? templates.map(data => (
                         <div key={data.id} className="col-4 col-sm-3">
                             <Template template={data}/>
                         </div>
-                    ))
+                    )) :
+                        <div className="text-center"
+                             style={{marginTop: 100, marginBottom: 50}}>There are no Templates saved in the system.
+                        </div>
                 }
             </div>
             <div className="row align-items-center">
@@ -41,12 +45,7 @@ const Templates = () => {
                     </Link>
                 </div>
             </div>
-            <footer className="py-3 my-4">
-                <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-
-                </ul>
-                <p className="text-center text-muted">© 2022 : Created By Salitha Chathuranga</p>
-            </footer>
+            <Footer/>
         </div>
     );
 }

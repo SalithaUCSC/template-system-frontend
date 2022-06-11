@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkFlow from "../assets/workflow-management.png";
 import {Link} from "react-router-dom";
+import Footer from "./Footer";
 
 const Home = () => {
     return (
@@ -21,12 +22,7 @@ const Home = () => {
                         </div>
                     </div>
             </div>
-            <div className="container">
-                <footer className="py-3 my-4">
-                    <ul className="nav justify-content-center border-bottom pb-3 mb-3"></ul>
-                    <p className="text-center text-muted">© 2022 : Created By Salitha Chathuranga</p>
-                </footer>
-            </div>
+            <Footer/>
         </div>
     );
 }

@@ -1,11 +1,20 @@
 .app-container {
-  margin-top: 100px;
+    margin-top: 100px;
+}
+
+.app-card {
+    width: 20rem;
+    margin-bottom: 10px;
+}
+
+.app-details {
+    margin-top: 100px;
 }
 
 .app-header {
-  text-align: center;
+    text-align: center;
 }
 
 .nav-link {
-  text-decoration: none;
+    text-decoration: none;
 }

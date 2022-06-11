@@ -2,8 +2,7 @@ import './App.css';
 import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Templates from "./components/Templates";
-import Template from "./components/Template";
+import TemplateDetails from "./components/TemplateDetails";
 
 
 const App = () => {
@@ -12,8 +11,7 @@ const App = () => {
           <Navbar/>
           <Routes>
               <Route path="/" caseSensitive={false} element={<Home />} />
-              <Route path="/templates" caseSensitive={false} element={<Templates />} />
-              <Route path="/templates/:id" element={<Template />}/>
+              <Route path="/templates/:id" caseSensitive={false} element={<TemplateDetails />}/>
           </Routes>
       </Router>
   );

@@ -25,10 +25,11 @@ const AddTemplate = () => {
             description: templateDescription,
             cards: []
         };
-        console.log(request);
         if (isFormValid()) {
             addTemplate(request).then(res => {
-                showAlert('Success!', 'success', 'Template is saved.');
+                if (res.status === 200) {
+                    showAlert('Success!', 'success', 'Template is saved.');
+                }
             }).catch(err => {
                 showAlert('Error!', 'error', err.message);
             })

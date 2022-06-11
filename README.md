@@ -2,7 +2,8 @@
 <hr/>
 
 ### Setup
-Just RUN ```npm start``` and it will be up on PORT 3000.
+1. Hit ```npm install``` to install NPM dependencies.
+2. Just RUN ```npm start``` and it will be up on PORT 3000.
 
 ### Home Page
 ![img.png](src/assets/img_3.png)        

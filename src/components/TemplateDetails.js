@@ -26,7 +26,7 @@ const TemplateDetails = () => {
                     <div className="col-6 col-sm-2">
                         <div style={{marginLeft: -20, float: "right"}}>
                             <Link to={"/templates/" + template.id + "/addCard"}>
-                                <button type="button" className="btn btn-dark">Add Workflow</button>
+                                <button type="button" className="btn btn-dark">Add Card</button>
                             </Link>
                         </div>
                     </div>

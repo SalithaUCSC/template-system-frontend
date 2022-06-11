@@ -7,3 +7,7 @@ export const getTemplates = () => {
 export const getTemplateById = (id) => {
     return axios.get("http://localhost:9000/api/templates/id/" + id);
 }
+
+export const addCardToTemplate = (data) => {
+    return axios.post("http://localhost:9000/api/cards/add", data);
+}

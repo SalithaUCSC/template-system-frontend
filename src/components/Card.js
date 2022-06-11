@@ -8,7 +8,7 @@ const Card = ({card}) => {
     }, [card]);
     return (
         <div>
-            <div className="accordion" id="accordionPanelsStayOpenExample">
+            <div className="accordion" id="accordionPanelsStayOpenExample" style={{marginBottom: 20}}>
                 <div className="accordion-item">
                     <h2 className="accordion-header" id={"#panelsStayOpen-" + cardData.id}>
                         <button className="accordion-button" type="button"

@@ -38,8 +38,8 @@ const AddCard = () => {
     }
     const addFields = (e) => {
         e.preventDefault();
-        let newfield = { key: "", value: "" };
-        setInputFields([...inputFields, newfield]);
+        let newAttribute = { key: "", value: "" };
+        setInputFields([...inputFields, newAttribute]);
     }
     const removeFields = (index) => {
         let data = [...inputFields];
@@ -127,25 +127,27 @@ const AddCard = () => {
                             </div>
                             : ""
                     }
+                    <br/>
                     <div className="form mb-3">
+                        <label className="mb-3">Card Attributes</label>
                         {inputFields.map((input, index) => {
                             return (
                                 <div key={index}>
                                     <input
-                                        name='key'
-                                        placeholder='Attribute Key'
+                                        name="key"
+                                        placeholder="Attribute Key"
                                         value={input.name}
                                         onChange={event => handleAttributeChange(index, event)}
                                     />
                                     <input
-                                        name='value'
-                                        placeholder='Attribute Value'
+                                        name="value"
+                                        placeholder="Attribute Value"
                                         value={input.name}
                                         onChange={event => handleAttributeChange(index, event)}
                                     />
                                     <button className="btn btn-danger btn-sm" style={{marginLeft: 10}}
                                             onClick={() => removeFields(index)}>
-                                        <i className="fa-solid fa-trash-can"></i> Remove</button>
+                                        <i className="fa-solid fa-trash-can"></i></button>
                                 </div>
                             )
                         })}

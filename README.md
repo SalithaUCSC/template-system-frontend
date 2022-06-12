@@ -1,5 +1,4 @@
 # Template System Frontend
-<hr/>
 
 ### Setup
 1. Hit ```npm install``` to install NPM dependencies.

@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from "./components/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import TemplateDetails from "./components/templates/TemplateDetails";
+import AddCard from "./components/cards/AddCard";
+import Templates from "./components/templates/Templates";
+import AddTemplate from "./components/templates/AddTemplate";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+          <Navbar/>
+          <Routes>
+              <Route path="/" caseSensitive={false} element={<Home />} />
+              <Route path="/templates" caseSensitive={false} element={<Templates />}/>
+              <Route path="/templates/addTemplate" caseSensitive={false} element={<AddTemplate />}/>
+              <Route path="/templates/:id" caseSensitive={false} element={<TemplateDetails />}/>
+              <Route path="/templates/:id/addCard" caseSensitive={false} element={<AddCard />}/>
+          </Routes>
+      </Router>
   );
 }
 

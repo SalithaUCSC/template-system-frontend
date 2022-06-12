@@ -11,7 +11,7 @@
 ![img.png](./src/assets/img.png)
 
 ### Template page
-![img_2.png](src/assets/img_2.png)
+![img.png](src/assets/img_2.png)
 
 ### Add Card Page
-![img_1.png](src/assets/img_1.png)
+![img.png](src/assets/img_1.png)

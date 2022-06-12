@@ -168,9 +168,8 @@ const AddCard = () => {
                         <button className="btn btn-secondary" onClick={addFields}>
                             <i className="fa-solid fa-plus"></i> Add Attributes</button>
                     </div>
-                    <br/><br/>
-                    <button className="w-10 btn btn-success" type="submit">SAVE</button>
                     <hr className="my-4"/>
+                    <button style={{float: "right"}} className="w-10 btn btn-success" type="submit">SAVE CARD</button>
                     <small className="text-muted">Fill the fields accordingly.</small>
                 </form>
                 <Link to={"/templates/" + id}>

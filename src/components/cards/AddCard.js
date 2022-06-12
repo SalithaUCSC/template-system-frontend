@@ -3,6 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import {useState} from "react";
 import {addCardToTemplate} from "../../services/TemplateService";
 import {showAlert} from "../../services/AlertService";
+import {getTimeDuration, validateDates} from "../../services/DateService";
 
 const AddCard = () => {
     const {id} = useParams();
@@ -11,9 +12,13 @@ const AddCard = () => {
     const handleCardName = (e) => {
         setCardName(e.target.value);
     };
-    const [cardDuration, setCardDuration] = useState("");
-    const handleCardDuration = (e) => {
-        setCardDuration(e.target.value);
+    const [cardStartDate, setCardStartDate] = useState("");
+    const handleCardStartDate = (e) => {
+        setCardStartDate(e.target.value);
+    };
+    const [cardEndDate, setCardEndDate] = useState("");
+    const handleCardEndDate = (e) => {
+        setCardEndDate(e.target.value);
     };
     const [cardRole, setCardRole] = useState("");
     const handleCardRole = (e) => {
@@ -47,7 +52,8 @@ const AddCard = () => {
         setInputFields(data);
     }
     const isFormValid = () => {
-        return (cardName !== '') && (cardName !== '') && (cardDuration !== '') && (cardDescription !== '')
+        return (cardName !== '') && (cardName !== '') && (cardStartDate !== '')
+            && (cardEndDate !== '') && (cardDescription !== '')
     }
     const validateRequestWithCardIndex = (request) => {
         if (cardPosition === "0" && cardPositionNo === "0") {
@@ -57,6 +63,7 @@ const AddCard = () => {
             request['cardPosition'] = parseInt(cardPositionNo);
         }
     }
+
     const submitForm = (e) => {
         e.preventDefault();
         let request = {
@@ -64,12 +71,13 @@ const AddCard = () => {
             card: {
                 name: cardName,
                 description: cardDescription,
-                timeDuration: cardDuration,
+                timeDuration: getTimeDuration(cardStartDate, cardEndDate),
                 role: cardRole,
                 attributes: inputFields.length > 0 ? inputFields : []
             }
         };
         validateRequestWithCardIndex(request);
+        validateDates(cardStartDate, cardEndDate);
         if (isFormValid()) {
             addCardToTemplate(request).then(res => {
                 if (res.status === 200) {
@@ -94,9 +102,14 @@ const AddCard = () => {
                         <label htmlFor="cardName">Card Name</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="cardDuration" name={cardDuration}
-                               placeholder="Time Duration" onChange={handleCardDuration}/>
-                        <label htmlFor="cardDuration">Time Duration</label>
+                        <input type="date" className="form-control" id="cardStartDate" name={cardStartDate}
+                               placeholder="Start Date" onChange={handleCardStartDate}/>
+                        <label htmlFor="cardDuration">Start Date</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input type="date" className="form-control" id="cardEndDate" name={cardEndDate}
+                               placeholder="End Date" onChange={handleCardEndDate}/>
+                        <label htmlFor="cardDuration">End Date</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input type="text" className="form-control" id="cardRole" name={cardRole} placeholder="Role"

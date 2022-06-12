@@ -1,20 +1,18 @@
 import axios from "axios";
-
-const PORT = "8000";
-const HOST = "http://localhost";
+import {HOST, PORT, API_CARDS, API_TEMPLATES} from "../AppConstants";
 
 export const getTemplates = () => {
-    return axios.get(`${HOST}:${PORT}/api/templates`);
+    return axios.get(`${HOST}:${PORT}${API_TEMPLATES}`);
 }
 
 export const getTemplateById = (id) => {
-    return axios.get(`${HOST}:${PORT}/api/templates/id/` + id);
+    return axios.get(`${HOST}:${PORT}${API_TEMPLATES}/id/` + id);
 }
 
 export const addCardToTemplate = (data) => {
-    return axios.post(`${HOST}:${PORT}/api/cards/add`, data);
+    return axios.post(`${HOST}:${PORT}${API_CARDS}/add`, data);
 }
 
 export const addTemplate = (data) => {
-    return axios.post(`${HOST}:${PORT}/api/templates`, data);
+    return axios.post(`${HOST}:${PORT}${API_TEMPLATES}`, data);
 }

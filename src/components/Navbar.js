@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import AppStatus from "./AppStatus";
 
 const Navbar = () => {
     return (
@@ -12,6 +13,11 @@ const Navbar = () => {
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
+                    <div className="collapse navbar-collapse">
+                        <div className="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <AppStatus/>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
